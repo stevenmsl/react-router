@@ -1,7 +1,70 @@
 import React from "react";
 import "./App.css";
 
-/* Examples – Basic */
+/* URL Parameters */
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
+
+// Params are placeholders in the URL that begin
+// with a colon, like the `:id` param defined in
+// the route in this example. A similar convention
+// is used for matching dynamic segments in other
+// popular web frameworks like Rails and Express.
+
+function Params() {
+  return (
+    <Router>
+      <div>
+        <h2>Accounts</h2>
+        <ul>
+          <li>
+            <Link to="/netflix">Netflix</Link>
+          </li>
+          <li>
+            <Link to="/zillow-group">Zillow Group</Link>
+          </li>
+          <li>
+            <Link to="/yahoo">Yahoo</Link>
+          </li>
+          <li>
+            <Link to="/modus-create">Modus Create</Link>
+          </li>
+        </ul>
+
+        <Switch>
+          <Route path="/:id" children={<Child />}></Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+function Child() {
+  let { id } = useParams();
+  return (
+    <div>
+      <h3>ID: {id}</h3>
+    </div>
+  );
+}
+
+const App = () => {
+  return (
+    <div className="App">
+      {" "}
+      <Params />{" "}
+    </div>
+  );
+};
+
+/* Basic */
+/*
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // This site has 3 pages, all of which are rendered
@@ -29,13 +92,13 @@ function Basic() {
           </li>
         </ul>
         <hr />
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
+        {
+          // A <Switch> looks through all its children <Route>
+          // elements and renders the first one whose path
+          // matches the current URL. Use a <Switch> any time
+          // you have multiple routes, but you want only one
+          // of them to render at a time
+        }
         <Switch>
           <Route exact path="/">
             <Home />
@@ -81,5 +144,6 @@ const App = () => {
     </div>
   );
 };
+*/
 
 export default App;
